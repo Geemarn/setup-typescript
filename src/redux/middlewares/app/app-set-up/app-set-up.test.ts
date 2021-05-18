@@ -1,3 +1,6 @@
+import configureMockStore from 'redux-mock-store';
+import nock from 'nock';
+import mockAxios from 'axios';
 import { createApiRequest } from '../../../../service.config/axios';
 import {
   startUILoading,
@@ -11,12 +14,10 @@ import {
   UI_LOADING,
   GET, navigateTo,
 } from '../../../actions';
-import configureMockStore from 'redux-mock-store';
 import { SendRequestType } from '../../../actions/app/app-set-up/types';
-import nock from 'nock';
 
-import mockAxios from 'axios';
 import * as UIActions from '../../../actions/app/ui/ui';
+
 jest.mock('axios');
 const mockStore = configureMockStore([]);
 describe('send request api middleare', () => {
@@ -41,7 +42,9 @@ describe('send request api middleare', () => {
       noSuccessMessage: false,
       noErrorMessage: false,
     };
-    config = { method: GET, url: '/', data: null, params: null };
+    config = {
+      method: GET, url: '/', data: null, params: null,
+    };
     mockAxiosResult = {
       meta: {},
       data: [],
@@ -99,6 +102,4 @@ describe('send request api middleare', () => {
       expect(mockAction).toEqual(expectedAction);
     });
   });
-
 });
-

@@ -1,6 +1,6 @@
 export * from './app';
 
-//http request methods
+// http request methods
 export const GET = 'get';
 export const POST = 'post';
 export const PUT = 'put';

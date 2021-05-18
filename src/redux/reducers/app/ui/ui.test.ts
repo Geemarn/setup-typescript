@@ -1,7 +1,6 @@
 import { UI_ERROR, UI_LOADING, UI_RESET } from '../../../actions';
 import uiReducer, { UIDefaultState, getNewUiLoadingState } from './ui';
 
-
 describe('ui reducer test', () => {
   // 1.
   it('should return initial state', () => {
@@ -10,7 +9,7 @@ describe('ui reducer test', () => {
   // 2.
   it('should handle UI RESET', () => {
     expect(uiReducer(UIDefaultState, { type: UI_RESET })).toEqual(
-      UIDefaultState
+      UIDefaultState,
     );
   });
   // 3.
@@ -20,7 +19,7 @@ describe('ui reducer test', () => {
         type: UI_LOADING.START,
         value: true,
         key: 'app',
-      })
+      }),
     ).toEqual({
       ...UIDefaultState,
       loading: {
@@ -35,7 +34,7 @@ describe('ui reducer test', () => {
         type: UI_LOADING.END,
         value: false,
         key: 'app',
-      })
+      }),
     ).toEqual({
       ...UIDefaultState,
       loading: {
@@ -45,13 +44,13 @@ describe('ui reducer test', () => {
   });
   // 5.
   it('should handle UI ERROR', () => {
-    //with null value
+    // with null value
     expect(
       uiReducer(UIDefaultState, {
         type: UI_ERROR,
         value: null,
         key: 'app',
-      })
+      }),
     ).toEqual({
       ...UIDefaultState,
       errors: {
@@ -63,7 +62,7 @@ describe('ui reducer test', () => {
         type: UI_ERROR,
         value: 'some test error goes here',
         key: 'app',
-      })
+      }),
     ).toEqual({
       ...UIDefaultState,
       errors: {
@@ -73,11 +72,10 @@ describe('ui reducer test', () => {
   });
 });
 
-
 describe('getNewUiLoadingState', () => {
   it('should handle getNewUiLoadingState', () => {
     expect(
-      getNewUiLoadingState(UIDefaultState, 'app', true)
+      getNewUiLoadingState(UIDefaultState, 'app', true),
     ).toEqual({
       ...UIDefaultState,
       loading: {
@@ -85,7 +83,7 @@ describe('getNewUiLoadingState', () => {
       },
     });
     expect(
-      getNewUiLoadingState(UIDefaultState, 'app', false)
+      getNewUiLoadingState(UIDefaultState, 'app', false),
     ).toEqual({
       ...UIDefaultState,
       loading: {

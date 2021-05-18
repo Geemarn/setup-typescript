@@ -1,3 +1,9 @@
+import { message } from 'antd';
+import { isEmpty, isString } from 'lodash';
+import { Middleware } from 'redux';
+import { push } from 'connected-react-router';
+import { batch } from 'react-redux';
+import { ReducerState } from '../../../reducers/types';
 import {
   startUILoading,
   stopUILoading,
@@ -6,18 +12,11 @@ import {
   SEND_HTTP_REQUEST,
   NAVIGATE_TO,
 } from '../../../actions';
-import { message } from 'antd';
-import { isEmpty, isString } from 'lodash';
-import { Middleware } from 'redux';
-import { ReducerState } from '../../../reducers/types';
-import { push } from 'connected-react-router';
-import { batch } from 'react-redux';
 import { createApiRequest } from '../../../../service.config/axios';
-
 
 export const sendHttpRequest: Middleware<unknown, ReducerState> = ({
   dispatch,
-}) => next => action => {
+}) => (next) => (action) => {
   if (action.type === SEND_HTTP_REQUEST.START) {
     const {
       method,
@@ -34,7 +33,9 @@ export const sendHttpRequest: Middleware<unknown, ReducerState> = ({
       noErrorMessage = false,
     } = action?.meta ?? {};
     // pass in config data
-    const config = { method, url, data: null, params: null };
+    const config = {
+      method, url, data: null, params: null,
+    };
     if (payload && (!isEmpty(payload) || payload instanceof FormData)) {
       config.data = payload;
     }
@@ -51,7 +52,7 @@ export const sendHttpRequest: Middleware<unknown, ReducerState> = ({
       .then((response: any) => {
         const { data, meta = null } = response;
         batch(() => {
-          //set session token if there is
+          // set session token if there is
           if (meta && meta.token) {
             dispatch(updateSessionToken(meta.token));
           }
@@ -63,9 +64,9 @@ export const sendHttpRequest: Middleware<unknown, ReducerState> = ({
               dispatch({ type: onSuccess, payload: data });
             }
           }
-          //navigate to next route
+          // navigate to next route
           if (nextRoute) dispatch(push(nextRoute));
-          //stop ui loading
+          // stop ui loading
           dispatch(stopUILoading(key));
           const notificationMessage = successMessage || meta?.message;
           if (!noSuccessMessage && notificationMessage) {
@@ -77,24 +78,22 @@ export const sendHttpRequest: Middleware<unknown, ReducerState> = ({
           }
         });
       })
-      .catch(e => {
+      .catch((e) => {
         batch(() => {
           const showErrorMessage = (errMessage: string) => {
             if (
-              !noErrorMessage &&
-              method.toLowerCase() !== 'get' &&
-              errMessage
+              !noErrorMessage
+              && method.toLowerCase() !== 'get'
+              && errMessage
             ) {
-              if (isString(message))
-                message.error({ content: errMessage, key, duration: 4 });
+              if (isString(message)) message.error({ content: errMessage, key, duration: 4 });
             }
           };
           if (onError) {
             if (typeof onError === 'function') {
               onError(e);
             } else {
-              const message =
-                errorMessage ?? e.message ?? 'there was a problem';
+              const message = errorMessage ?? e.message ?? 'there was a problem';
               dispatch(updateUIError(key, message));
               showErrorMessage(message);
             }
@@ -113,11 +112,11 @@ export const sendHttpRequest: Middleware<unknown, ReducerState> = ({
 // navigation handled by connected router
 const navigateTo: Middleware<unknown, ReducerState> = ({
   dispatch,
-}) => next => action => {
+}) => (next) => (action) => {
   next(action);
   if (action.type === NAVIGATE_TO) {
     if (isString(action.password)) dispatch(push(action.payload));
   }
 };
 
-export default [ sendHttpRequest, navigateTo ];
+export default [sendHttpRequest, navigateTo];

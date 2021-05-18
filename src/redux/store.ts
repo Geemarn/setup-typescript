@@ -7,7 +7,7 @@ import appReducers from './reducers';
 import { UIDefaultState } from './reducers/app/ui/ui';
 import { Action } from './actions/types';
 
-//history from createBrowserHistory
+// history from createBrowserHistory
 export const history = createBrowserHistory();
 const rootReducer = (state: any, action: Action) => {
   if (action.type === 'RESET_APP_STATE') {
@@ -30,13 +30,13 @@ if (process.env.NODE_ENV !== 'production') {
 let middleware = applyMiddleware(...middleWares);
 
 if (
-  process.env.NODE_ENV !== 'production' &&
+  process.env.NODE_ENV !== 'production'
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
-  window.__REDUX_DEVTOOLS_EXTENSION__
+  // @ts-ignore
+  && window.__REDUX_DEVTOOLS_EXTENSION__
 ) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
+  // @ts-ignore
   middleware = compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
