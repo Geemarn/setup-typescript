@@ -1,4 +1,3 @@
-
 export interface CreateActionType {
   START: string;
   SUCCESS: string;

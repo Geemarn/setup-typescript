@@ -11,5 +11,4 @@ type AppState = {
 
 type ReducerState = UIAppState & AppState;
 
-
 export { ReducerState };

@@ -1,6 +1,6 @@
 import {
   createActionType,
-  createActionString
+  createActionString,
 } from '../../../../_shared/utils';
 import { SendRequestType } from './types';
 
@@ -8,11 +8,11 @@ const baseType = 'app';
 export const SEND_HTTP_REQUEST = createActionType('SEND_HTTP_REQUEST', baseType);
 export const UPDATE_SESSION_TOKEN = createActionString(
   'UPDATE_SESSION_TOKEN',
-  baseType
+  baseType,
 );
 export const NAVIGATE_TO = createActionString(
   'NAVIGATE_TO',
-  baseType
+  baseType,
 );
 
 export const sendHttpRequest = (meta: SendRequestType) => ({

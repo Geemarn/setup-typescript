@@ -3,7 +3,7 @@ import {
   UI_LOADING,
   UI_RESET,
 } from '../../../actions';
-import {UIStateType} from './types';
+import { UIStateType } from './types';
 import { Action } from '../../../actions/types';
 
 export const UIDefaultState: UIStateType = {
@@ -11,7 +11,7 @@ export const UIDefaultState: UIStateType = {
   loading: {},
 };
 
-export default (state = UIDefaultState, action: Action ) => {
+export default (state = UIDefaultState, action: Action) => {
   switch (action.type) {
     case UI_RESET:
       return state;
@@ -20,20 +20,16 @@ export default (state = UIDefaultState, action: Action ) => {
     case UI_LOADING.END:
       return getNewUiLoadingState(state, action.key, false);
     case UI_ERROR:
-      return Object.assign({}, state, {
-        errors: { ...state.errors, [action.key]: action.value },
-      });
+      return { ...state, errors: { ...state.errors, [action.key]: action.value } };
     default:
       return state;
   }
-}
+};
 
 export const getNewUiLoadingState = function (
   currentState: any = {},
   key: string,
-  value: boolean
+  value: boolean,
 ) {
-  return Object.assign({}, currentState, {
-    loading: { ...currentState.loading, [key]: value },
-  });
+  return { ...currentState, loading: { ...currentState.loading, [key]: value } };
 };

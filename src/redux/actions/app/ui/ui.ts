@@ -19,7 +19,7 @@ export const startUILoading = (key: string) => {
   return {
     type: UI_LOADING.START,
     key,
-  }
+  };
 };
 
 export const stopUILoading = (key: string) => ({
@@ -29,10 +29,9 @@ export const stopUILoading = (key: string) => ({
 
 export const updateUIError = (
   key: string,
-  value: string | null | ReactNode
+  value: string | null | ReactNode,
 ) => ({
   type: UI_ERROR,
   key,
   value,
 });
-

@@ -10,5 +10,5 @@ import App from './App';
 // });
 
 it('expect to render app component', () => {
-  expect(shallow(<App />)).toMatchSnapshot()
+  expect(shallow(<App />)).toMatchSnapshot();
 });
