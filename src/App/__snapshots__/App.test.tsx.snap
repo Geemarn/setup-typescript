@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render app component 1`] = `
+<div
+  className="app"
+>
+  <WingBlank
+    prefixCls="am-wingblank"
+    size="lg"
+  >
+    <h1>
+      this is a react bootstrap projects
+    </h1>
+    <Button
+      activeStyle={Object {}}
+      disabled={false}
+      inline={false}
+      loading={false}
+      prefixCls="am-button"
+      size="large"
+      type="warning"
+    >
+      Start
+    </Button>
+    <WhiteSpace
+      prefixCls="am-whitespace"
+      size="md"
+    />
+    <Button
+      activeStyle={Object {}}
+      disabled={false}
+      inline={false}
+      loading={false}
+      prefixCls="am-button"
+      size="large"
+      type="primary"
+    >
+      Start
+    </Button>
+    <br />
+    <Button
+      type="primary"
+    >
+      Start here
+    </Button>
+  </WingBlank>
+</div>
+`;
