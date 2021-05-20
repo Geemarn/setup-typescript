@@ -1,6 +1,6 @@
 export interface SendRequestType {
   // http request methods
-  method: 'get' | 'post' | 'put' | 'delete' | 'patch';
+  method: "get" | "post" | "put" | "delete" | "patch";
   // request url
   url: string;
   // identifier fro ui updates

@@ -1,21 +1,21 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 import {
   createActionString,
   createActionType,
-} from '../../../../_shared/utils';
+} from "../../../../_shared/utils";
 
-const baseType = 'app';
-export const UI_RESET = createActionString('UI_RESET', baseType);
-export const UI_LOADING = createActionType('UI_LOADING', baseType);
-export const UI_ERROR = createActionString('UI_ERROR', baseType);
-export const UI_NAVIGATE = createActionString('UI_NAVIGATE', baseType);
+const baseType = "app";
+export const UI_RESET = createActionString("UI_RESET", baseType);
+export const UI_LOADING = createActionType("UI_LOADING", baseType);
+export const UI_ERROR = createActionString("UI_ERROR", baseType);
+export const UI_NAVIGATE = createActionString("UI_NAVIGATE", baseType);
 
 export const resetUI = () => ({
   type: UI_RESET,
 });
 
 export const startUILoading = (key: string) => {
-  console.log('keykeykey:::', key);
+  console.log("keykeykey:::", key);
   return {
     type: UI_LOADING.START,
     key,
@@ -29,7 +29,7 @@ export const stopUILoading = (key: string) => ({
 
 export const updateUIError = (
   key: string,
-  value: string | null | ReactNode,
+  value: string | null | ReactNode
 ) => ({
   type: UI_ERROR,
   key,

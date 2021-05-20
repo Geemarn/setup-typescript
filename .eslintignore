@@ -1,2 +1,7 @@
 *.css
 *.svg
+node_modules
+build
+public
+src/service-worker.ts
+src/serviceWorkerRegistration.ts
