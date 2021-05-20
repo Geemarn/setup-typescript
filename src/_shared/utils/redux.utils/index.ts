@@ -1,8 +1,8 @@
-import { CreateActionType } from './types';
+import { CreateActionType } from "./types";
 
 export const createActionType = (
   type: string,
-  baseType = 'app',
+  baseType = "app"
 ): CreateActionType => ({
   START: `@@${baseType}/${type}_START`,
   SUCCESS: `@@${baseType}/${type}_SUCCESS`,
@@ -10,4 +10,5 @@ export const createActionType = (
   END: `@@${baseType}/${type}_END`,
 });
 
-export const createActionString = (type: string, entity = 'app'): string => `@@${entity}/${type}`;
+export const createActionString = (type: string, entity = "app"): string =>
+  `@@${entity}/${type}`;

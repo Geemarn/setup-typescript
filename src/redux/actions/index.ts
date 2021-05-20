@@ -1,8 +1,8 @@
-export * from './app';
+export * from "./app";
 
 // http request methods
-export const GET = 'get';
-export const POST = 'post';
-export const PUT = 'put';
-export const DELETE = 'delete';
-export const PATCH = 'patch';
+export const GET = "get";
+export const POST = "post";
+export const PUT = "put";
+export const DELETE = "delete";
+export const PATCH = "patch";
