@@ -14,7 +14,7 @@ const useWindowSize = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  return collapsed;
+  return { collapsed, setCollapsed };
 };
 
 export default useWindowSize;
