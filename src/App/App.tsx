@@ -1,13 +1,12 @@
-import React, { lazy } from "react";
+import React  from "react";
 import { ConfigProvider } from "antd";
 import { useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../_shared/theme/themeVariables";
+import Layout from '../layout';
 import { ReducerState } from "../redux/reducers/types";
 import "./App.less";
-
-const Layout = lazy(() => import("../layout"));
 
 function App(props: any) {
   //bring in UI layout from redux state
