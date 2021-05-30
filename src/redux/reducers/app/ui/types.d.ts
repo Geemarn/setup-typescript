@@ -1,4 +1,7 @@
 export interface UIStateType {
-  errors: any;
-  loading: any;
+  errors: Record<string, any>;
+  loading: Record<string, any>;
+  switchTheme: boolean;
+  switchRTL: boolean,
+  topMenu: boolean,
 }

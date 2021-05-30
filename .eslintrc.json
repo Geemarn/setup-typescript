@@ -6,13 +6,15 @@
   "extends": [
     "react-app",
     "airbnb",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -21,9 +23,16 @@
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
-  "plugins": ["react", "import", "prettier", "react-hooks"],
+  "plugins": [
+    "react",
+    "import",
+    "prettier",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": 0,
+    "no-param-reassign": 0,
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -33,33 +42,64 @@
       }
     ],
     "import/no-named-as-default-member": 0,
-    "import/order": [2, { "groups": ["external", "index", "sibling", "parent", "internal", "builtin"] }],
+    "import/order": [
+      2,
+      {
+        "groups": [
+          "external",
+          "index",
+          "sibling",
+          "parent",
+          "internal",
+          "builtin"
+        ]
+      }
+    ],
     "react/jsx-filename-extension": [
       0,
       {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
     "import/prefer-default-export": 0,
     "react-hooks/exhaustive-deps": "off",
-    //    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/rules-of-hooks": 0,
     "import/no-extraneous-dependencies": 0,
     "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
     "react/jsx-props-no-spreading": 0,
     "react/forbid-prop-types": 0,
     "react/require-default-props": 0,
+    "react/jsx-curly-brace-presence": 0,
     "react/prop-types": "warn",
     "no-nested-ternary": 0,
     "global-require": 0,
     "import/no-dynamic-require": 0,
     "react/no-array-index-key": 0,
+    "react/no-unescaped-entities": 0,
     //    "import/named": "off",
     "import/no-cycle": "off",
     "no-underscore-dangle": "off",
     "no-empty": "off",
     "no-console": "warn",
     "no-unused-vars": "warn",
-    "spaced-comment": "off"
+    "spaced-comment": "off",
+    "no-shadow": 0,
+    "react/button-has-type": 0,
+    "react/state-in-constructor": 0,
+    "react/destructuring-assignment": 0,
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "no-use-before-define": 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": 0,
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
+    "import/no-unresolved": 0,
+    "func-names": 0
   },
   "settings": {
     "import/resolver": {
