@@ -1,28 +1,30 @@
-import React from "react";
-import { Button, WhiteSpace, WingBlank } from "antd-mobile";
-import { Button as Btn } from "antd";
-import withLoader from "../_shared/components/with-loader";
+import React, { lazy } from "react";
+import { ConfigProvider } from "antd";
+import { useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../_shared/theme/themeVariables";
+import { ReducerState } from "../redux/reducers/types";
 import "./App.less";
 
-const TestPage = (props: any) => (
-  <div className="app">
-    <WingBlank>
-      <h1>this is a react bootstrap projects</h1>
-      <Button type="warning">Start</Button>
-      <WhiteSpace />
-      <Button type="primary">Start</Button>
-      <br />
-      <Btn type="primary">Start here</Btn>
-    </WingBlank>
-  </div>
-);
+const Layout = lazy(() => import("../layout"));
 
 function App(props: any) {
-  const NewComponent = withLoader(TestPage);
+  //bring in UI layout from redux state
+  const { darkMode, rtl, topMenu } = useSelector((state: ReducerState) => ({
+    darkMode: state.ui.switchTheme,
+    rtl: state.ui.switchRTL,
+    topMenu: state.ui.topMenu,
+  }));
+
   return (
-    <div className="app">
-      <NewComponent isLoading={!true} text="hello world" />
-    </div>
+    <ConfigProvider direction={rtl ? "rtl" : "ltr"}>
+      <ThemeProvider theme={{ ...theme, rtl, topMenu, darkMode }}>
+        <Switch>
+          <Route exact path="/" component={Layout} />
+        </Switch>
+      </ThemeProvider>
+    </ConfigProvider>
   );
 }
 

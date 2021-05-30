@@ -27,7 +27,6 @@ function saveState(state: any) {
   }
 }
 
-
 // history from createBrowserHistory
 export const history = createBrowserHistory();
 const rootReducer = (state: any, action: Action) => {
