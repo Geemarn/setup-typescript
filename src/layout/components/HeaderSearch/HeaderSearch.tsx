@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Row, Col, Input, Popover } from "antd";
-import { HeaderDiv, PopContent, PopTitle, PopoverStyle } from "../styles";
-import { searchData } from "../Data";
+import { HeaderDiv, PopContent, PopTitle, PopoverStyle } from "../../styles";
+import { searchData } from "../../Data";
 
 const HeaderSearch = ({
   darkTheme,
-  RTL,
 }: {
   darkTheme: boolean;
-  RTL: boolean;
 }) => {
   const searchDataArr = Object.values(searchData);
   const [data, setData] = useState(searchDataArr);
@@ -46,18 +44,16 @@ const HeaderSearch = ({
       darkMode={darkTheme}
     >
       <Row className="ant-row-middle">
-        <Col md={2} xs={1} className={RTL ? "text-left" : "text-right"}>
-          <span className="certain-category-icon">
-            <i className="ri-search-line" />
-          </span>
-        </Col>
         <Col md={22} xs={23}>
           <PopoverStyle
-            placement={!RTL ? "bottomLeft" : "bottomRight"}
+            placement={"bottomLeft"}
             content={<PopContent>{content}</PopContent>}
             title={<PopTitle>Search List</PopTitle>}
             trigger="focus"
           >
+            <span className="certain-category-icon">
+              <i className="ri-search-line" />
+            </span>
             <Input placeholder="Search..." onInput={search} />
           </PopoverStyle>
         </Col>

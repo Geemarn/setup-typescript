@@ -13,11 +13,6 @@ export const CHANGE_LAYOUT_THEME = createActionString(
   "CHANGE_LAYOUT_THEME",
   baseType
 );
-export const CHANGE_RTL_MODE = createActionString("CHANGE_RTL_MODE", baseType);
-export const CHANGE_MENU_MODE = createActionString(
-  "CHANGE_MENU_MODE",
-  baseType
-);
 
 export const resetUI = () => ({
   type: UI_RESET,
@@ -49,19 +44,5 @@ export const changeLayoutTheme = (changeTheme: boolean) => {
   return {
     type: CHANGE_LAYOUT_THEME,
     payload: changeTheme,
-  };
-};
-
-export const changeRTLMode = (changeRTL: boolean) => {
-  return {
-    type: CHANGE_RTL_MODE,
-    payload: changeRTL,
-  };
-};
-
-export const changeMenu = (topMenu: boolean) => {
-  return {
-    type: CHANGE_MENU_MODE,
-    topMenu: changeMenu,
   };
 };

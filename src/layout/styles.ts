@@ -1,12 +1,42 @@
 import Styled from "styled-components";
 import { Popover } from "antd";
 
-const LayoutDiv = Styled.div<{ darkMode: boolean }>`
-    position: relative;
+const LayoutStyle = Styled.div<{ darkMode: boolean }>`
     header{
+    height: 60px;
+    line-height: 60px;
         box-shadow: 0 2px 30px ${({ theme }) => theme["gray-solid"]}10;
         ${({ darkMode }) => (darkMode ? `background: #272B41;` : "")};
         z-index: 999;
+        .navbar-brand{
+            button{
+              padding:  "0 25px 0 15px";
+              color: ${({ theme }) => theme["extra-light-color"]};
+              @media only screen and (max-width: 875px){
+                  padding:  "0 25px 0 10px";
+              }
+              @media only screen and (max-width: 767px){
+                  padding: "0 15px 0 0px";
+              }
+          }
+          span {       
+             color: ${({ darkMode }) => !darkMode ? '#272B41' : 'lightgray'};
+             padding-left: 10px;
+          }
+        }
+        .striking-logo{
+            margin-left: 10px;
+            @media only screen and (max-width: 875px){
+               margin-right: 4px;
+            }
+            @media only screen and (max-width: 767px){
+               margin-right: 0;
+            }
+            img{
+                max-width: 32px;
+                width: 100%;
+            }
+        }
         .ant-btn-link{
           ${({ darkMode }) =>
             darkMode
@@ -207,22 +237,7 @@ const LayoutDiv = Styled.div<{ darkMode: boolean }>`
             }
         }
     }
-     .striking-logo{
-        @media only screen and (max-width: 875px){
-            ${({ theme }) => (theme.rtl ? "margin-left" : "margin-right")}: 4px;
-        }
-        @media only screen and (max-width: 767px){
-            ${({ theme }) => (theme.rtl ? "margin-left" : "margin-right")}: 0;
-        }
-        img{
-            max-width: ${({ theme }) => (theme.topMenu ? "32px" : "32px")};
-            width: 100%;
-        }
-        &.top-menu{
-            ${({ theme }) =>
-              theme.rtl ? "margin-right" : "margin-left"}: 15px;
-        }
-    }
+   
     .certain-category-search-wrapper{
         ${({ darkMode, theme }) =>
           darkMode
@@ -243,23 +258,7 @@ const LayoutDiv = Styled.div<{ darkMode: boolean }>`
             }
         }
     }
-     .navbar-brand{
-        button{
-            padding: ${({ theme }) =>
-              theme.rtl ? "0 15px 0 25px" : "0 25px 0 15px"};
-            line-height: 0;
-            margin-top: 4px;
-            color: ${({ theme }) => theme["extra-light-color"]};
-            @media only screen and (max-width: 875px){
-                padding: ${({ theme }) =>
-                  theme.rtl ? "0 10px 0 25px" : "0 25px 0 10px"};
-            }
-            @media only screen and (max-width: 767px){
-                padding: ${({ theme }) =>
-                  theme.rtl ? "0 0px 0 15px" : "0 15px 0 0px"};
-            }
-        }
-    }
+
     /* Sidebar styles */
     .ant-layout-sider{
         box-shadow: 0 0 30px #9299B810;
@@ -630,8 +629,7 @@ const HeaderDiv = Styled.div<{ darkMode: boolean }>`
     }
     .certain-category-icon{
         position: relative;
-        bottom: -1px;
-        left: 10px;
+        bottom: -2px;
         color: ${({ theme, darkMode }) =>
           darkMode ? `#A8AAB3;` : theme["gray-color"]};
         @media only screen and (max-width: 767px){
@@ -670,4 +668,85 @@ const PopTitle = Styled.p`
 
 const PopoverStyle = Styled(Popover)` 
 `;
-export { LayoutDiv, HeaderDiv, PopContent, PopTitle, PopoverStyle };
+const TopMenuSearch = Styled.div`
+    .top-right-wrap{
+        position: relative;
+        float: ${({ theme }) => (theme.rtl ? 'left' : 'right')};
+    }
+    .search-toggle{
+        display: flex;
+        align-items: center;
+        ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 10px;
+        ${({ theme }) => (theme.darkMode ? `color: #A8AAB3;` : 'color :#5A5F7D')};
+        .feather-x{
+            display: none;
+        }
+        .feather-search{
+            display: flex;
+        }
+        &.active{
+            .feather-search{
+                display: none;
+            }
+            .feather-x{
+                display: flex;
+            }
+        }
+        svg,
+        img{
+            width: 20px;
+        }
+    }
+    .topMenu-search-form{
+        position: absolute;
+        ${({ theme }) => (theme.rtl ? 'left' : 'right')}: 100%;
+        ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 15px;
+        top: 12px;
+        background-color: #fff;
+        border: 1px solid ${({ theme }) => theme['border-color-normal']};
+        border-radius: 6px;
+        height: 40px;
+        width: 280px;
+        display: none;
+        &.show{
+            display: block;
+        }
+        .search-icon{
+            width: fit-content;
+            line-height: 1;
+            position: absolute;
+            left: 15px;
+            ${({ theme }) => (theme.rtl ? 'right' : 'left')}: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9999;
+        }
+        i,
+        svg{
+            width: 18px;
+            color: ${({ theme }) => (theme.darkMode ? `color: #A8AAB3;` : 'color:# 9299b8')};
+        }
+        form{
+            height: auto;
+            display: flex;
+            align-items: center;
+        }
+        input{
+            position: relative;
+            border-radius: 6px;
+            width: 100%;
+            border: 0 none;
+            height: 38px;
+            padding-left: 40px;
+            z-index: 999;
+            ${({ theme }) => (theme.rtl ? 'padding-right' : 'padding-left')}: 40px;
+            &:focus{
+                border: 0 none;
+                box-shadow: 0 0;
+                outline: none;
+            }
+        }
+    }
+`;
+
+export { LayoutStyle, HeaderDiv, PopContent, PopTitle, PopoverStyle, TopMenuSearch };

@@ -11,6 +11,4 @@ const selectUi = (state: ReducerState) => state.ui;
 
 export const selectLayoutSetup = createSelector([selectUi], (trips) => ({
   darkTheme: trips.switchTheme,
-  RTL: trips.switchRTL,
-  topMenu: trips.topMenu,
 }));
